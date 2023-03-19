@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
 """
-File: 1-filter_states.py
-Desc: This module contains a script that  lists all states
-with a name starting with N (upper N) from the database hbtn_0e_0_usa
+File: 3-my_safe_filter_states.py
+Desc: This module contains a python script that takes in arguments
+and displays all values in the states table of hbtn_0e_0_usa where
+name matches the argument.
 Author: Gizachew Bayness (Elec Crazy)
-Date Created: Oct 7, 2022
+Date Created: Oct 7 2022
 """
 
 from sys import argv
@@ -21,10 +22,9 @@ if __name__ == "__main__":
             )
 
     cur = db.cursor()
-    cur.execute("""SELECT * FROM states
-            WHERE BINARY name LIKE 'N%'
-            ORDER BY id ASC""")
+    cur.execute("""SELECT * FROM states ORDER BY id ASC""")
     states_info = cur.fetchall()
 
     for state in states_info:
-        print(state)
+        if (state[1] == argv[4]):
+            print(state)

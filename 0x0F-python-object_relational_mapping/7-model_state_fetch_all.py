@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
 """
-File: 12-model_state_update_id_2.py
-Desc: This module contains a python script that changes the
-name of a State object from the database hbtn_0e_6_usa
+File: 7-model_state_fetch_all.py
+Desc: This module contains a python script that lists all
+State objects from the database hbtn_0e_6_usa
 Author: Gizachew Bayness (Elec Crazy).
 Date Created: Oct 7 2022
 """
@@ -21,6 +21,6 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).filter(State.id == 2).first()
-    state.name = "New Mexico"
-    session.commit()
+    states = session.query(State)
+    for state in states:
+        print("{}: {}".format(state.id, state.name))
